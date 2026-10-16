@@ -1,0 +1,30 @@
+# 含 TMDB 密钥，绝不入库
+config.json
+config.local.json
+# 便携包里预填的含-key 配置（正式发布前必须清空）
+deploy/windows/config.json
+deploy/payload/system/movies/scraper.json
+
+# 构建产物
+bin/
+obj/
+publish/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 冒烟/测试产物
+samples/out/
+samples/library/
+samples/library_out/
+
+# 构建产物与大二进制（可用 `sh deploy/build.sh` 重建，需要 .NET 8 SDK）
+dist/
+deploy/payload/system/movies/batoscrape
+deploy/windows/batoscrape.exe
+deploy/windows/电影刮削器.exe
+bua/moviescraper/deploy/payload/system/movies/batoscrape
+bua/moviescraper/deploy/windows/*.exe
+*.user
+.vs/
