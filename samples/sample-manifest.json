@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "sourceDir": "/userdata/roms/movies",
+  "scrapedAt": "2026-10-13T00:00:00Z",
+  "movies": [
+    {
+      "title": "Shrek",
+      "sortTitle": "Shrek",
+      "year": 2001,
+      "releaseDate": "2001-05-18",
+      "genre": "Animation, Comedy, Fantasy",
+      "rating": 7.7,
+      "plot": "A green ogre named Shrek & his talkative donkey set out to rescue a princess.",
+      "tmdbId": "808",
+      "videoPath": "./Shrek (2001).mp4",
+      "posterPath": "./media/Shrek-poster.jpg",
+      "fanartPath": "./media/Shrek-fanart.jpg"
+    },
+    {
+      "title": "千与千寻",
+      "year": 2001,
+      "releaseDate": "2001-07-20",
+      "genre": "Animation, Family, Fantasy",
+      "rating": 8.538,
+      "plot": "10 岁少女千寻误入神灵世界，为救父母而在汤屋工作。",
+      "tmdbId": "129",
+      "videoPath": "./Spirited Away (2001).mkv",
+      "posterPath": "./media/spirited-away-poster.jpg"
+    }
+  ]
+}

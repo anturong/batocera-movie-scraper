@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=VLC
+Name[zh_CN]=VLC 播放器
+GenericName=Media player
+GenericName[zh_CN]=影音播放器
+Comment=Open VLC media player
+Comment[zh_CN]=打开 VLC 影音播放器
+Exec=env QT_QPA_PLATFORM=xcb /usr/bin/vlc
+Icon=vlc
+Terminal=false
+Categories=AudioVideo;Video;Player;batocera.linux;

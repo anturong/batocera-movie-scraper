@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>batoscrape</AssemblyName>
+    <RootNamespace>BatoceraMovieScraper</RootNamespace>
+    <!-- 纯跨平台控制台：不带 -windows，避免 WinForms/WPF/注册表依赖 -->
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <!-- 去掉 ICU 依赖（精简型 Linux 常缺），日期一律手写格式 -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 国内字幕源(assrt)多为 GBK/GB18030，需代码页才能转 UTF-8；否则中文乱码。体积很小、可单文件自包含。 -->
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

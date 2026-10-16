@@ -1,0 +1,27 @@
+{
+  "scraper": {
+    "core": "douban"
+  },
+  "tmdb": {
+    "apiKey": "",
+    "readAccessToken": "",
+    "language": "zh-CN"
+  },
+  "proxy": {
+    "enabled": false,
+    "url": ""
+  },
+  "library": {
+    "sourceDir": "/userdata/roms/movies"
+  },
+  "subtitles": {
+    "//": "字幕源 source 默认 assrt=射手网(伪)·国内(只需 assrtToken)；切 opensubtitles 才用 apiKey/username/password。",
+    "enabled": false,
+    "source": "assrt",
+    "languages": "zh-cn,en",
+    "assrtToken": "",
+    "apiKey": "",
+    "username": "",
+    "password": ""
+  }
+}

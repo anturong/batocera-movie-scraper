@@ -1,0 +1,27 @@
+{
+  "scraper": { "core": "douban" },
+  "tmdb": {
+    "apiKey": "",
+    "readAccessToken": "",
+    "language": "zh-CN"
+  },
+  "proxy": {
+    "//": "TMDB 被墙时启用；本机 v2rayN 的 SOCKS5 一般在 127.0.0.1:10808",
+    "enabled": false,
+    "url": "socks5h://127.0.0.1:10808"
+  },
+  "library": {
+    "//": "影片所在目录，Windows 路径用双反斜杠 \\\\ 或改用正斜杠 /",
+    "sourceDir": "D:\\电影"
+  },
+  "subtitles": {
+    "//": "字幕下载。source 默认 assrt=射手网(伪)·国内(只需 assrtToken)；改 opensubtitles 才用下面的 apiKey/username/password。语言码用 zh-cn / zh-tw / en。",
+    "enabled": false,
+    "source": "assrt",
+    "languages": "zh-cn,en",
+    "assrtToken": "",
+    "apiKey": "",
+    "username": "",
+    "password": ""
+  }
+}

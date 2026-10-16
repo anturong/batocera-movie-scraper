@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Kodi
+Name[zh_CN]=Kodi 媒体中心
+GenericName=Media Center
+GenericName[zh_CN]=媒体中心
+Comment=Open Kodi media center
+Comment[zh_CN]=打开 Kodi 媒体中心
+Exec=/usr/bin/kodi
+Icon=kodi
+Terminal=false
+Categories=AudioVideo;Video;Player;TV;batocera.linux;

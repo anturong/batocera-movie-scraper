@@ -1,0 +1,15 @@
+电影刮削器 —— BUA 风格附加组件（本地打包）
+
+目录：
+  moviescraper/                     ← 这就是 BUA 的「一个附加组件」目录（可直接丢进 BUA 仓库的顶层）
+      moviescraper.sh               ← 安装（在 Batocera 上 root 执行）
+      moviescraper_uninstall.sh     ← 卸载
+      README.md                     ← 说明（含 key 相关注意事项）
+      extra/icon.png, logo.png      ← 图标
+      deploy/                       ← 净化后的项目部署目录（install.sh / payload / players）
+
+★ 重要 ★
+1. 本目录**未上传到任何仓库**，只在你本地。
+2. 打包时已剔除所有含 key 的文件（scraper.json / config.json / windows/config.json）
+   与 Windows 大型可执行文件；并已全文校验（含 63.8 MB 的 linux 二进制）无 key 残留。
+3. 日后若要提交到 BUA，请重新确认敏感文件仍被排除。

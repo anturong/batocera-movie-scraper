@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Movie Scraper
+Name[zh_CN]=电影刮削
+GenericName=Movie Scraper
+GenericName[zh_CN]=影视刮削器
+Comment=Scrape movie metadata and posters from TMDB
+Comment[zh_CN]=从 TMDB 刮削影片元数据与海报
+Exec=/userdata/system/movies/scrape-gui.sh
+Icon=/userdata/system/movies/icons/scraper.png
+Terminal=false
+Categories=AudioVideo;Video;batocera.linux;

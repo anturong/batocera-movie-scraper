@@ -1,0 +1,4 @@
+# 电影刮削器部署 · VLC 最小配置（其余项 VLC 启动时会自动补默认）
+# 中文字幕字体：系统自带的 Noto Sans SC，避免中文显示成方块
+freetype-font=Noto Sans SC
+freetype-rel-fontsize=16
