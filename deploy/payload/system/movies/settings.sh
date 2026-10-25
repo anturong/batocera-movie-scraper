@@ -25,8 +25,8 @@ out=$(yad --form --title="电影刮削 · 设置" --width=820 --height=430 \
     --field="元数据语言（如 zh-CN / en-US）:" "$lg" \
     --field="片库目录:DIR" "$sd" \
     --field="代理地址（留空=直连；例 socks5://127.0.0.1:10808）:" "$px" \
-    --field="TMDB API Key (v3，仅 TMDB 核心需要):" "$k" \
-    --field="TMDB Read Token (v4，key 与 token 二选一):" "$tok" \
+    --field="TMDB API Key (v3；申请 https://www.themoviedb.org/settings/api):" "$k" \
+    --field="TMDB Read Token (v4；同上面的申请页，二选一):" "$tok" \
     --field="下载字幕:CHK" "$sen_init" \
     --field="字幕源:CB" "$SOURCES" \
     --field="字幕语言（逗号分隔，如 zh-cn,en）:" "$slang" \
@@ -44,7 +44,7 @@ if [ "$sen" = "TRUE" ]; then
     sid=$(python3 "$PY" "$CONF" subsrc-id "$ssrc")
     if [ "$sid" = "opensubtitles" ]; then
         out2=$(yad --form --title="字幕源：OpenSubtitles" --width=580 \
-            --field="OpenSubtitles API Key（opensubtitles.com 账号里免费生成）:" "$skey" \
+            --field="OpenSubtitles API Key（https://www.opensubtitles.com/en/consumers 免费生成）:" "$skey" \
             --field="OpenSubtitles 账号（邮箱）:" "$suser" \
             --field="OpenSubtitles 密码:H" "$spass" \
             --button="取消:1" --button="保存:0")
@@ -55,7 +55,7 @@ EOF
         IFS=$OLD_IFS
     else
         out2=$(yad --form --title="字幕源：射手网(伪)·国内" --width=580 \
-            --field="射手网 Token（登录 assrt.net →「用户面板」复制 32 位 Token）:" "$stok" \
+            --field="射手网 Token（登录 https://assrt.net/usercp.php →「用户面板」复制 32 位）:" "$stok" \
             --button="取消:1" --button="保存:0")
         [ $? -ne 0 ] && exit 0
         OLD_IFS=$IFS; IFS='|' read stok <<EOF

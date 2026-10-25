@@ -3,6 +3,7 @@
     "core": "douban"
   },
   "tmdb": {
+    "//docs": "申请 Key / Read Token: https://www.themoviedb.org/settings/api（注册: https://www.themoviedb.org/signup）",
     "apiKey": "",
     "readAccessToken": "",
     "language": "zh-CN"
@@ -16,6 +17,7 @@
   },
   "subtitles": {
     "//": "字幕源 source 默认 assrt=射手网(伪)·国内(只需 assrtToken)；切 opensubtitles 才用 apiKey/username/password。",
+    "//docs": "assrt Token: https://assrt.net/usercp.php ；OpenSubtitles API Key: https://www.opensubtitles.com/en/consumers",
     "enabled": false,
     "source": "assrt",
     "languages": "zh-cn,en",

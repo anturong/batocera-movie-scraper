@@ -48,8 +48,12 @@ bash /userdata/system/movies/install.sh --check    # 只看版本
    `deploy/install.sh` 现在只是仓库根目录 `install.sh` 的快捷入口，行为完全一致。
 
 3. F1 菜单 →「电影刮削」→ 首次进入自动弹设置，填 **TMDB API Key 或 Read Token**（可设代理），选好刮削核心。
+   TMDB 注册 <https://www.themoviedb.org/signup>，申请 Key / Read Token 到
+   <https://www.themoviedb.org/settings/api>。
    若要下字幕：勾「下载字幕」，**字幕源默认「射手网(伪)·国内」**（免翻墙），需填它的 **Token**
-   —— 登录 `assrt.net` →「用户面板」复制 32 位 Token。也可改成 OpenSubtitles（填它的 API Key）。
+   —— 登录 <https://assrt.net/usercp.php>（「用户面板」）复制 32 位 Token，API 文档见
+   <https://assrt.net/api/doc>。也可改成 OpenSubtitles：在
+   <https://www.opensubtitles.com/en/consumers> 生成 API Key。
 4. 设置里点「保存」回到菜单，选「开始刮削」跑一次。
 5. 重启 EmulationStation / 整机 → 首页出现「电影」分页。
 
@@ -90,7 +94,10 @@ Windows 端带一个**图形界面**，双击即用：
 
 - `deploy/windows/电影刮削器.exe` —— 界面里填 TMDB Key/Token/代理，用**「选择文件夹…」
   挑电影目录**，选刮削核心，点「开始刮削」，下方实时滚动日志；设置存到同目录 `config.json`。
-  勾「启用字幕下载」后选字幕源（默认国内**射手网(伪)**，填 Token；或 OpenSubtitles，填 API Key）。
+  TMDB Key/Token：<https://www.themoviedb.org/settings/api>。
+  勾「启用字幕下载」后选字幕源（默认国内**射手网(伪)**，Token 在
+  <https://assrt.net/usercp.php> 复制；或 OpenSubtitles，API Key 在
+  <https://www.opensubtitles.com/en/consumers> 生成）。
 - `deploy/windows/batoscrape.exe` —— 同一核心的命令行版（`scrape` / `render`），供脚本/批处理。
 - `deploy/windows/config.example.json` —— 配置样例（GUI 首次「保存设置」会自动生成 `config.json`）。
 

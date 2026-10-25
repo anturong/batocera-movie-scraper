@@ -54,6 +54,7 @@ public sealed class ScraperConfig
     public string Core { get; set; } = "douban";
 }
 
+/// <summary>TMDB 凭据。申请 Key / Read Token：https://www.themoviedb.org/settings/api（注册：https://www.themoviedb.org/signup）。</summary>
 public sealed class TmdbConfig
 {
     public string? ApiKey { get; set; }
@@ -83,10 +84,10 @@ public sealed class SubtitleConfig
     /// <summary>语言优先序，逗号分隔；字幕文件名用命中的实际语言，如 "zh-cn,en"。也可写旧码 chi/zht 自动归一。</summary>
     public string Languages { get; set; } = "zh-cn,en";
 
-    /// <summary>射手网(伪) assrt.net 的 API Token（32 位；登录后到「用户面板」查看）。国内源用它。</summary>
+    /// <summary>射手网(伪) assrt.net 的 API Token（32 位；登录 https://assrt.net/usercp.php 到「用户面板」查看）。国内源用它。</summary>
     public string? AssrtToken { get; set; }
 
-    /// <summary>OpenSubtitles.com 免费 API-Key（切到 opensubtitles 源时必需；在账号设置里生成）。</summary>
+    /// <summary>OpenSubtitles.com 免费 API-Key（切到 opensubtitles 源时必需；在 https://www.opensubtitles.com/en/consumers 生成）。</summary>
     public string? ApiKey { get; set; }
 
     /// <summary>可选：OpenSubtitles 账号邮箱。实测只带 Api-Key 就能下载；填账号是为挂配额。留空即可。</summary>

@@ -227,6 +227,10 @@ EOF
 
 安装完成 ✓
   1) F1 菜单 →「电影刮削」→ 设置：填自己的凭据（本包不含 key）
+     TMDB Key/Token：https://www.themoviedb.org/settings/api
+     射手网 Token：  https://assrt.net/usercp.php
+     OpenSubtitles： https://www.opensubtitles.com/en/consumers
+     （刮削核心默认豆瓣，免 key；不下载字幕也不需要以上任何一项）
   2) 把影片放进 /userdata/roms/movies，ES 首页会出现「电影」分页
   3) 以后更新：bash $MV/install.sh
   4) 卸载：bash $MV/install.sh --uninstall

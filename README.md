@@ -80,9 +80,10 @@ bash install.sh --no-players
 
 | 项 | 说明 |
 | --- | --- |
-| 刮削核心 | 默认 **豆瓣**（国内直连即可）；切 TMDB 需要 API Key 或 v4 Read Token（被墙时填代理） |
-| 字幕 · assrt | 只需 32 位 `assrtToken`（assrt.net 用户面板） |
-| 字幕 · OpenSubtitles | 需要 API Key + 账号 + 密码 |
+| 刮削核心 | 默认 **豆瓣**（国内直连即可，免 key）；切 TMDB 需要 API Key 或 v4 Read Token（被墙时填代理） |
+| TMDB | 注册：<https://www.themoviedb.org/signup> · 申请 Key / Read Token：<https://www.themoviedb.org/settings/api> |
+| 字幕 · assrt | 只需 32 位 `assrtToken`；登录 <https://assrt.net/usercp.php>（「用户面板」）复制，API 文档：<https://assrt.net/api/doc> |
+| 字幕 · OpenSubtitles | 需要 API Key + 账号 + 密码；在 <https://www.opensubtitles.com/en/consumers>（API consumers）免费生成 |
 | 代理 | 例 `socks5://127.0.0.1:10808`，留空即直连 |
 
 以下文件已在 [`.gitignore`](.gitignore) 中排除，**请不要提交**（提交 = 泄漏）：
@@ -116,7 +117,7 @@ python tools/make_release.py
 # 产出 dist-release/{moviescraper.tar.gz,moviescraper.version,sha256sums.txt}
 ```
 
-发版：改 `VERSION`，提交后打同名 tag（`VERSION=2026.10.25.1` → `v2026.10.25.1`）。
+发版：改 `VERSION`，提交后打同名 tag（例：`VERSION=2026.10.25.2` → `v2026.10.25.2`）。
 GitHub Actions 会用 .NET 8 现场编译 linux-x64 二进制、打包并上传三个资产。
 
 产物：

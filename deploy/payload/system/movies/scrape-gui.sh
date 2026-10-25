@@ -22,7 +22,7 @@ if needs_key; then
   "$DIR/settings.sh"
   if needs_key; then
     yad --error --title="电影刮削" --width=440 \
-        --text="当前核心（TMDB）还没填 API Key 或 Read Token，无法刮削。\n请先在设置里填写，或改用豆瓣核心。"
+        --text="当前核心（TMDB）还没填 API Key 或 Read Token，无法刮削。\n申请地址：https://www.themoviedb.org/settings/api\n请先在设置里填写，或改用豆瓣核心。"
     exit 1
   fi
 fi
