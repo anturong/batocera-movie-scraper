@@ -216,8 +216,10 @@ EOF
     cp -f "$src/VERSION" "$MV/VERSION"
     chmod 644 "$MV/VERSION" 2>/dev/null || true
     if [ -f "$src/install.sh" ]; then
-        cp -f "$src/install.sh" "$MV/install.sh"
-        chmod +x "$MV/install.sh"
+        # 不能 cp 覆盖正在运行的脚本：bash 会从被改写的同一 inode 继续读。用 mv 换 inode。
+        cp -f "$src/install.sh" "$MV/install.sh.new"
+        chmod +x "$MV/install.sh.new"
+        mv -f "$MV/install.sh.new" "$MV/install.sh"
     fi
     echo "  当前版本：$(installed_version)"
 
