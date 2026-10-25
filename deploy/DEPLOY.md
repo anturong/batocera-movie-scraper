@@ -15,8 +15,10 @@
 | 配置读写桥 | `/userdata/system/movies/lib/config_io.py` | shell ↔ JSON（13 段契约） |
 | 配置 | `/userdata/system/movies/scraper.json` | 唯一真源配置 |
 | 图标 | `/userdata/system/movies/icons/scraper.png` | 菜单 / 窗口图标 |
+| 版本 / 更新入口 | `/userdata/system/movies/{VERSION,install.sh}` | 记录版本；以后一键更新 |
 | ES 电影分页 | `/userdata/system/configs/emulationstation/es_systems_movies.cfg` | 注册 `movies` 系统 |
 | F1 快捷项 | `/userdata/system/.local/share/applications/{batoscrape,kodi,vlc}.desktop` | F1 启动器 |
+| Ports 入口 | `/userdata/roms/ports/电影刮削.sh` | ES Ports 里启动设置界面 |
 | VLC 配置 | `/userdata/system/.config/vlc/vlcrc` | 中文字幕字体 |
 | Kodi 配置 | `/userdata/system/.kodi/userdata/{guisettings.xml,sources.xml}` | 中文界面 + 影片来源 |
 
@@ -62,7 +64,8 @@ vlc) exec env QT_QPA_PLATFORM=xcb /usr/bin/vlc --fullscreen --no-video-title-sho
   （`scraper-settings.desktop`）已废弃，安装时会清除。
 - `vlc.desktop` 的 Exec 同样**强制 `QT_QPA_PLATFORM=xcb`**（与 `play.sh` 同因：避免 EGL abort）。
 - 三者都带 `Categories=…;batocera.linux;` 才会进 F1 菜单。
-- 安装**不覆盖已存在**的同名 desktop（保留用户手改）。
+- `batoscrape.desktop` 每次安装/更新都会刷新；`kodi.desktop` / `vlc.desktop`
+  已存在时不覆盖，避免动到用户自己的菜单项。
 
 ### 刮削入口 `scrape-gui.sh` 要点
 

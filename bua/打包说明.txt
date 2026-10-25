@@ -1,15 +1,24 @@
-电影刮削器 —— BUA 风格附加组件（本地打包）
+电影刮削器 —— BUA 风格附加组件（兼容入口）
+============================================
 
 目录：
-  moviescraper/                     ← 这就是 BUA 的「一个附加组件」目录（可直接丢进 BUA 仓库的顶层）
-      moviescraper.sh               ← 安装（在 Batocera 上 root 执行）
-      moviescraper_uninstall.sh     ← 卸载
+  moviescraper/                     ← BUA 的「一个附加组件」目录（可丢进 BUA 仓库顶层）
+      moviescraper.sh               ← 安装/更新入口（实际调用仓库根目录 install.sh）
+      moviescraper_uninstall.sh     ← 卸载（调用 install.sh --uninstall）
       README.md                     ← 说明（含 key 相关注意事项）
       extra/icon.png, logo.png      ← 图标
-      deploy/                       ← 净化后的项目部署目录（install.sh / payload / players）
+      deploy/                       ← 离线备份用的部署目录（新入口不再依赖它）
+
+推荐安装方式（一条命令，含菜单 / ES 分页 / 更新）：
+  curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/anturong/batocera-movie-scraper/main/install.sh | bash
+以后更新：
+  bash /userdata/system/movies/install.sh --check
+  bash /userdata/system/movies/install.sh
 
 ★ 重要 ★
-1. 本目录**未上传到任何仓库**，只在你本地。
-2. 打包时已剔除所有含 key 的文件（scraper.json / config.json / windows/config.json）
-   与 Windows 大型可执行文件；并已全文校验（含 63.8 MB 的 linux 二进制）无 key 残留。
-3. 日后若要提交到 BUA，请重新确认敏感文件仍被排除。
+1. 项目已发布到 https://github.com/anturong/batocera-movie-scraper （公开，无 key）。
+2. 发布包由 tools/make_release.py 白名单生成：scraper.json / config.json /
+   windows 可执行文件不会进入产物；打包后会扫描凭据字段，非空即失败。
+3. 安装/更新只从 scraper.example.json 生成空模板，不会写入或覆盖
+   /userdata/system/movies/scraper.json 里的 key。
+4. 日后若要提交到 BUA，请重新确认敏感文件仍被排除。

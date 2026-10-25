@@ -3,7 +3,23 @@
 把「电影刮削器」装进 Batocera：EmulationStation 会多出一个「电影」分页，F1 菜单里会有
 「电影刮削」设置入口；可选一并把 Kodi / VLC 的播放设置配好。
 
-## 安装
+## 推荐：一键安装 / 更新
+
+本目录是 BUA 风格的兼容入口，真正的安装逻辑只有一份：仓库根目录的 `install.sh`。
+在 Batocera 上以 root 运行：
+
+```sh
+curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/anturong/batocera-movie-scraper/main/install.sh | bash
+```
+
+以后更新：
+
+```sh
+bash /userdata/system/movies/install.sh --check
+bash /userdata/system/movies/install.sh
+```
+
+## 离线安装（本目录）
 
 把整个 `moviescraper/` 目录拷到 Batocera（推荐 `/userdata/system/add-ons/moviescraper/`），
 然后在 root 下执行：
@@ -13,10 +29,13 @@ bash moviescraper.sh                 # 全装（含 Kodi / VLC 播放器设置�
 bash moviescraper.sh --no-players    # 只装刮削器与「电影」分页
 ```
 
-卸载：
+`moviescraper.sh` 会优先调用仓库里的 `install.sh`；不在仓库里时自动下载最新安装器。
+卸载同样走统一入口：
 
 ```sh
 bash moviescraper_uninstall.sh
+# 或
+bash /userdata/system/movies/install.sh --uninstall
 ```
 
 ## ★ 关于 API key（重要）★
@@ -46,7 +65,7 @@ bash moviescraper_uninstall.sh
 
 ## 状态
 
-- 本附加组件为**本地打包**，**未上传到任何仓库**。
+- 上游仓库：<https://github.com/anturong/batocera-movie-scraper>（公开，不含 key）。
+- 发布包由 `tools/make_release.py` 白名单生成并扫描凭据，`scraper.json` / `config.json` / `.exe` 不会进入产物。
 - 若日后要提交到 BUA：请再次确认上面那几个敏感文件依然不在包内，
   并按 BUA 的约定把安装命令/描述/分类登记进 `app/batocera-unofficial-addons.sh`。
-- 上游项目：`D:\RAID_NAS备份\x\batocera_movie_scraper`（构建：`sh deploy/build.sh`，需要 .NET 8 SDK）。

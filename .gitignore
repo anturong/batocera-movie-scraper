@@ -1,7 +1,6 @@
-# 含 TMDB 密钥，绝不入库
+# 含 TMDB / 字幕站密钥，绝不入库
 config.json
 config.local.json
-# 便携包里预填的含-key 配置（正式发布前必须清空）
 deploy/windows/config.json
 deploy/payload/system/movies/scraper.json
 
@@ -9,6 +8,8 @@ deploy/payload/system/movies/scraper.json
 bin/
 obj/
 publish/
+dist-release/
+dist-release-*/
 
 # Python 缓存
 __pycache__/

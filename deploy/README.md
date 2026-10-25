@@ -27,6 +27,16 @@ deploy/
 
 ## 安装
 
+推荐直接一键安装/更新（安装器会下载 Release、校验、装菜单与 ES 分页）：
+
+```sh
+curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/anturong/batocera-movie-scraper/main/install.sh | bash
+bash /userdata/system/movies/install.sh            # 以后更新
+bash /userdata/system/movies/install.sh --check    # 只看版本
+```
+
+离线安装：
+
 1. 把整个 `deploy/` 目录拷到盘上，例如 `/userdata/deploy/`。
 2. 在盘上以 root 运行：
 
@@ -34,6 +44,8 @@ deploy/
    sh /userdata/deploy/install.sh              # 全装（含 Kodi/VLC 设置）
    sh /userdata/deploy/install.sh --no-players # 只装刮削器与电影分页
    ```
+
+   `deploy/install.sh` 现在只是仓库根目录 `install.sh` 的快捷入口，行为完全一致。
 
 3. F1 菜单 →「电影刮削」→ 首次进入自动弹设置，填 **TMDB API Key 或 Read Token**（可设代理），选好刮削核心。
    若要下字幕：勾「下载字幕」，**字幕源默认「射手网(伪)·国内」**（免翻墙），需填它的 **Token**
@@ -43,9 +55,10 @@ deploy/
 
 > 「设置」与「刮削」合并在同一个 F1 入口「电影刮削」里，不再单独占一个菜单项。
 
-> ⚠️ **当前为预填测试版**：`payload/system/movies/scraper.json` 与 `windows/config.json`
-> 已填入你自己的 TMDB key，开箱即用。**正式发布前必须清空这两个文件**（删掉即可，install.sh
-> 会自动退回 `scraper.example.json` 的空模板）。已有 `scraper.json` 不会被覆盖。
+> **本包不含任何 key。** 安装器只从 `scraper.example.json` 生成空模板；
+> 机器上已有 `/userdata/system/movies/scraper.json` 时不会覆盖。
+> 开发目录里的 `scraper.json` / `windows/config.json` 已被 `.gitignore` 排除，
+> 发布包由 `tools/make_release.py` 白名单 + 扫描生成，不会带出去。
 
 ## 依赖
 

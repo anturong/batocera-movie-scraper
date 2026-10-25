@@ -18,32 +18,59 @@ Windows 端另带图形界面（`电影刮削器.exe`），命令行端为 `bato
 
 ---
 
-## 安装到 Batocera
+## 一键安装到 Batocera
 
-### 方式一：附加组件（推荐，BUA 风格）
-
-仓库里的 **[`bua/moviescraper/`](bua/moviescraper/)** 就是可直接使用的附加组件（离线安装）：
-
-1. 从本仓库的 **Releases** 下载 `batoscrape`（linux-x64 自包含单文件），
-   放到 `bua/moviescraper/deploy/payload/system/movies/batoscrape`
-   （该二进制不入库，所以需要单独下载；也可以自己 `sh deploy/build.sh` 编一个）
-2. 把整个 `moviescraper/` 目录拷到 Batocera，root 下执行：
+在 Batocera 上以 **root** 运行（国内走 ghfast 镜像，直连也可把前缀去掉）：
 
 ```sh
-bash moviescraper.sh                 # 全装（含 Kodi / VLC 播放器设置）
-bash moviescraper.sh --no-players    # 只装刮削器与 ES「电影」分页
-bash moviescraper_uninstall.sh       # 卸载
+curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/anturong/batocera-movie-scraper/main/install.sh | bash
 ```
 
-细节见 [`bua/打包说明.txt`](bua/打包说明.txt) 与 [`bua/moviescraper/README.md`](bua/moviescraper/README.md)。
+一条命令会完成：
 
-### 方式二：手动部署
+- 下载最新 Release（`moviescraper.tar.gz`）并校验 sha256
+- 安装刮削器二进制与脚本到 `/userdata/system/movies/`
+- 写入 EmulationStation「电影」分页
+- 登记 F1 菜单：**电影刮削 / Kodi / VLC**，以及 Ports 里的「电影刮削」
+- 配好 Kodi 中文界面、VLC 中文字幕字体（`--no-players` 可跳过）
+- 生成空配置（**不会写入任何 key**）
+- 把安装器保存到 `/userdata/system/movies/install.sh`
+
+### 更新 / 检查 / 卸载
 
 ```sh
-sh deploy/install.sh              # 同方式一，直接跑项目自带的安装器
-sh deploy/install.sh --no-players
-sh deploy/uninstall.sh
+bash /userdata/system/movies/install.sh --check     # 只看版本
+bash /userdata/system/movies/install.sh             # 有新版才下载更新
+bash /userdata/system/movies/install.sh --force     # 强制重装当前版
+bash /userdata/system/movies/install.sh --uninstall # 卸载（保留 scraper.json）
+bash /userdata/system/movies/install.sh --uninstall --purge-config
 ```
+
+| 参数 | 作用 |
+| --- | --- |
+| `--check` | 显示已安装 / 最新版本，不安装 |
+| `--force` | 版本相同也重新下载安装 |
+| `--no-players` | 跳过 Kodi / VLC 的播放设置 |
+| `--uninstall` | 卸载程序、菜单项与 ES 分页 |
+| `--purge-config` | 卸载时连 `scraper.json`（含 key）一起删 |
+| `--yes` | 卸载不询问 |
+
+更新只替换程序文件，**不动** `/userdata/system/movies/scraper.json` 和影片库。
+
+### 离线 / 本地仓库安装
+
+在仓库目录里直接跑（使用当前 `deploy/` 里的文件）：
+
+```sh
+bash install.sh --no-players
+```
+
+或解压 Release 后运行包里的 `install.sh`。`sh deploy/install.sh` 仍可用，是同一个安装器的快捷入口。
+
+### BUA 附加组件（可选）
+
+[`bua/moviescraper/`](bua/moviescraper/) 保留 BUA 风格的兼容入口，
+`moviescraper.sh` 实际调用的仍是同一个 `install.sh`。
 
 ---
 
@@ -62,22 +89,35 @@ sh deploy/uninstall.sh
 
 ```
 config.json                                # 本机开发用
-deploy/payload/system/movies/scraper.json  # 便携包预填配置
+deploy/payload/system/movies/scraper.json  # 本机开发用（含 key，安装器也不会复制它）
 deploy/windows/config.json                 # Windows 端配置
 ```
 
 安装器会从 `scraper.example.json`（空 key）生成待填配置；若机器上已有 `scraper.json`，则**不会覆盖**你的 key。
 
+发布包由 [`tools/make_release.py`](tools/make_release.py) 按白名单生成，打包后会扫描一遍：
+`scraper.json`、`config.json`、Windows `.exe` 不会进入产物；示例配置里的凭据字段非空则直接打包失败。
+
 ---
 
-## 构建
+## 构建与发布
 
-需要 **.NET 8 SDK**：
+本地构建需要 **.NET 8 SDK**：
 
 ```sh
 sh deploy/build.sh
 # 产出 dist/{linux-x64,win-x64,win-gui}，并自动铺进 deploy/
 ```
+
+打 Batocera 安装包（白名单 + key 扫描）：
+
+```sh
+python tools/make_release.py
+# 产出 dist-release/{moviescraper.tar.gz,moviescraper.version,sha256sums.txt}
+```
+
+发版：改 `VERSION`，提交后打同名 tag（`VERSION=2026.10.25.1` → `v2026.10.25.1`）。
+GitHub Actions 会用 .NET 8 现场编译 linux-x64 二进制、打包并上传三个资产。
 
 产物：
 
@@ -94,13 +134,19 @@ sh deploy/build.sh
 ## 目录结构
 
 ```
+install.sh                      一键安装 / 更新 / 卸载（唯一逻辑入口）
+VERSION                         当前版本（发版时与 tag 一致）
+deploy/                         安装载荷：payload（二进制 + 脚本 + 配置模板 + 图标）
+  payload/system/movies/          装到 /userdata/system/movies
+  payload/system/configs/emulationstation/es_systems_movies.cfg   ES「电影」分页定义
+  payload/system/.local/share/applications/*.desktop              F1 菜单项
+  players/                        Kodi / VLC 播放设置
+  lib/                            ES 配置合并/移除
+tools/make_release.py           白名单打包 + key 扫描
+.github/workflows/release.yml   tag 发版：编译 linux-x64 → 打包 → Release
 src/BatoceraMovieScraper/       核心：扫描 / 刮削（豆瓣、TMDB、nova）/ 字幕 / 渲染 gamelist
 src/BatoceraMovieScraper.Win/   Windows 图形界面（WinForms）
-deploy/                         便携部署：install.sh / uninstall.sh / payload / players
-  payload/system/movies/        装到 Batocera 的内容（batoscrape + 脚本 + 配置模板 + 图标）
-  payload/system/configs/emulationstation/es_systems_movies.cfg   ES「电影」分页定义
-  players/                      Kodi / VLC 播放设置
-bua/moviescraper/               BUA 风格附加组件（本地打包，含去 key 的 deploy 副本）
+bua/moviescraper/               BUA 风格兼容入口（调用同一个 install.sh）
 samples/                        样例输出（gamelist.xml / manifest.json）
 docs/BUA-ADDON-NOTES.md         做 Batocera 附加组件的踩坑记录
 ```
